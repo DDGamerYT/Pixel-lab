@@ -1,0 +1,84 @@
+body {
+    background: #0f172a;
+    color: white;
+}
+
+.container {
+    padding: 40px;
+    text-align: center;
+}
+
+.subtitle {
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+.upload-box {
+    border: 2px dashed #38bdf8;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   /* 🔥 centers horizontally */
+    text-align: center;    /* 🔥 centers text */
+
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    background: #1e293b;
+}
+
+.upload-box img {
+    max-width: 250px;
+    border-radius: 10px;
+    margin: 0 auto;   /* 🔥 extra safety centering */
+    display: block;
+}
+
+input[type="file"] {
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background: #38bdf8;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0ea5e9;
+}
+
+.preview-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#previewImage {
+    max-width: 250px;
+    border-radius: 10px;
+}
+
+.cancel-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    cursor: pointer;
+    font-weight: bold;
+}
