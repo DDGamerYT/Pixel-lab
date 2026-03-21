@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+{% endblock %}
+
+{% block body %}
+
+<header>
+        <h1>⚡ Pixel Lab</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/tools">Tools</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h2>All Tools in One Place</h2>
+        <p>Free, fast and simple tools to make your work easier 🚀</p>
+    </section>
+
+    <!-- TOOL CARDS -->
+    <div class="container">
+
+        <div class="card">
+            <h3>Image Compressor</h3>
+            <p>Reduce image size without losing quality.</p>
+            <a href="/image-compressor">
+                <button class="btn">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Converter</h3>
+            <p>Convert your files quickly and easily into different formats.</p>
+            <a href="/converter">
+                <button class="btn">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>QR Generator</h3>
+            <p>Create QR codes instantly.</p>
+            <a href="/qr-generator">
+                <button class="btn">Open</button>
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Remove Background</h3>
+            <p>Removes background without losing quality</p>
+            <a href="/remove-bg">
+                <button class="btn">Open</button>
+            </a>
+            
+        </div>
+
+        <div class="card">
+            <h3>Resize</h3>
+            <p>Changing the size of image without lossing of quality</p>
+            <a href="/resize">
+                <button class="btn">Open</button>
+            </a>    
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Tool Hub | Built by You 💪</p>
+    </footer>
+
+{% endblock %}

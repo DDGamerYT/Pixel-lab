@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/resize.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h2>📐 Image Resizer</h2>
+    <p class="subtitle">Resize image by width & height without losing quality</p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- Upload -->
+        <div class="upload-box" onclick="selectImage()">
+
+            <input type="file" name="image" id="imageInput" accept="image/*" hidden required>
+
+            <p id="uploadText">Click to upload image</p>
+
+            <!-- Preview Wrapper -->
+            <div class="preview-wrapper" id="previewWrapper" style="display:none;">
+                
+                <img id="previewImage" />
+
+                <!-- Cancel Button -->
+                <span class="cancel-btn" onclick="removeImage(event)">✖</span>
+
+            </div>
+
+        </div>
+
+        <!-- Width & Height -->
+        <div class="controls">
+
+            <div class="input-group">
+                <label>Width (px)</label>
+                <input type="number" name="width" placeholder="e.g. 800">
+            </div>
+
+            <div class="input-group">
+                <label>Height (px)</label>
+                <input type="number" name="height" placeholder="e.g. 600">
+            </div>
+
+        </div>
+
+        <!-- Filename -->
+        <div class="controls">
+            <input type="text" name="filename" placeholder="Enter file name (optional)">
+        </div>
+
+        <br><br>
+        <button type="submit">Resize & Download</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function selectImage() {
+    document.getElementById("imageInput").click();
+}
+
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("previewImage");
+const text = document.getElementById("uploadText");
+const wrapper = document.getElementById("previewWrapper");
+
+input.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        wrapper.style.display = "block";
+        text.style.display = "none";
+    }
+});
+
+function removeImage(event) {
+    event.stopPropagation(); // prevent upload box click
+
+    input.value = ""; // clear file input
+    preview.src = "";
+    wrapper.style.display = "none";
+    text.style.display = "block";
+}
+</script>
+{% endblock %}

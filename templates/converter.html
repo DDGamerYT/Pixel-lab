@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/converter.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h2>🖼️ Image Converter</h2>
+    <p class="subtitle">Convert images to different formats</p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- Upload -->
+        <div class="upload-box" onclick="selectImage()">
+
+            <input type="file" name="image" id="imageInput" accept="image/*" hidden required>
+
+            <p id="uploadText">Click to upload image</p>
+
+            <!-- Preview Wrapper -->
+            <div class="preview-wrapper" id="previewWrapper" style="display:none;">
+                
+                <img id="previewImage" />
+
+                <!-- Cancel Button -->
+                <span class="cancel-btn" onclick="removeImage(event)">✖</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Format Selection -->
+        <div class="controls">
+            <label>Select Output Format:</label><br><br>
+
+            <select name="format">
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WEBP</option>
+            </select>
+        </div>
+
+        <!-- Optional Filename -->
+        <div class="controls">
+            <input type="text" name="filename" placeholder="Enter file name (optional)">
+        </div>
+
+        <br><br>
+        <button type="submit">Convert & Download</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function selectImage() {
+    document.getElementById("imageInput").click();
+}
+
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("previewImage");
+const text = document.getElementById("uploadText");
+const wrapper = document.getElementById("previewWrapper");
+
+input.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        wrapper.style.display = "block";
+        text.style.display = "none";
+    }
+});
+
+function removeImage(event) {
+    event.stopPropagation(); // prevent upload box click
+
+    input.value = ""; // clear file input
+    preview.src = "";
+    wrapper.style.display = "none";
+    text.style.display = "block";
+}
+</script>
+{% endblock %}

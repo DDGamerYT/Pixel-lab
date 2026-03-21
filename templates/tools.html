@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tools.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/tools">Tools</a>
+    <a href="/about">About</a>
+</nav>
+
+<div class="container">
+
+    <h2>🧰 All Tools</h2>
+    <p class="subtitle">Choose a tool to get started</p>
+
+    <div class="tools-grid">
+
+        <!-- Image Compressor -->
+        <div class="card" onclick="openTool('image-compressor')">
+            <h3>🖼️ Image Compressor</h3>
+            <p>Reduce image size easily</p>
+        </div>
+
+        <!-- Image Converter -->
+        <div class="card" onclick="openTool('image-converter')">
+            <h3>🔄 Image Converter</h3>
+            <p>Convert JPG, PNG, WEBP</p>
+        </div>
+
+        <!-- Image Resizer -->
+        <div class="card" onclick="openTool('image-resize')">
+            <h3>📐 Image Resizer</h3>
+            <p>Resize image without losing quality</p>
+        </div>
+
+        <!-- QR Generator -->
+        <div class="card" onclick="openTool('qr-generator')">
+            <h3>📱 QR Generator</h3>
+            <p>Create QR codes instantly</p>
+        </div>
+
+        <!-- Remove Background -->
+        <div class="card" onclick="openTool('remove-bg')">
+            <h3>🪄 Remove Background</h3>
+            <p>Remove background with AI</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function openTool(tool) {
+    window.location.href = "/" + tool;
+}
+</script>
+{% endblock %}

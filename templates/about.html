@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/tools">Tools</a>
+    <a href="/about">About</a>
+</nav>
+
+<div class="container">
+
+    <h2>ℹ️ About Us</h2>
+    <p class="subtitle">Learn more about our platform</p>
+
+    <!-- About Section -->
+    <div class="about-box">
+        <p>
+            Welcome to our <strong>Online Tool Hub</strong> 🚀 — a platform where you can access powerful tools for free.
+        </p>
+
+        <p>
+            We provide tools like image compressor, converter, resizer, QR generator, and background remover.
+        </p>
+
+        <p>
+            Our goal is to make simple, fast, and useful tools available to everyone without complicated steps.
+        </p>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+
+        <div class="feature">
+            <h3>⚡ Fast</h3>
+            <p>All tools work instantly in your browser</p>
+        </div>
+
+        <div class="feature">
+            <h3>🔒 Secure</h3>
+            <p>Your files are not stored permanently</p>
+        </div>
+
+        <div class="feature">
+            <h3>💡 Easy</h3>
+            <p>Simple UI, no complicated steps</p>
+        </div>
+
+    </div>
+
+    <!-- Footer text -->
+    <div class="footer-text">
+        <p>Made with ❤️ for users</p>
+    </div>
+
+</div>
+
+{% endblock %}

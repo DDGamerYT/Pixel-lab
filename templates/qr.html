@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/qr.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h2>📱 QR Code Generator</h2>
+    <p class="subtitle">Enter text and file name</p>
+
+    <form method="POST">
+
+        <!-- QR Data -->
+        <div class="input-box">
+            <input type="text" name="data" placeholder="Enter URL or text..." required>
+        </div>
+
+        <!-- File Name -->
+        <div class="input-box">
+            <input type="text" name="filename" placeholder="Enter file name (optional)">
+        </div>
+
+        <button type="submit">Generate & Download</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
