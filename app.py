@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request, send_file
+from flask_sqlalchemy import SQLAlchemy
 from PIL import Image
 import os
 import qrcode
 from io import BytesIO
+from rembg import remove
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 
 UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -92,6 +96,34 @@ def qr_generator():
             )
 
     return render_template('qr.html')
+
+@app.route('/remove-bg', methods=['GET', 'POST'])
+def remove_bg():
+    if request.method == 'POST':
+        file = request.files['image']
+
+        if file:
+            # 👉 Get original filename
+            original_name = file.filename
+            name, ext = os.path.splitext(original_name)
+
+            # 👉 Read file bytes
+            input_bytes = file.read()
+
+            # 👉 Remove background
+            output_bytes = remove(input_bytes)
+
+            # 👉 Create new filename
+            new_filename = f"remove_bg_{name}.png"
+
+            return send_file(
+                BytesIO(output_bytes),
+                mimetype='image/png',
+                as_attachment=True,
+                download_name=new_filename
+            )
+
+    return render_template('remove_bg.html')
 
 @app.route('/converter', methods=['GET', 'POST'])
 def converter():
@@ -217,6 +249,10 @@ def tools():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/googleccbe93b3e1abf06e')
+def google_verify():
+    return send_file('googleccbe93b3e1abf06e')
 
 if __name__ == "__main__":
     app.run(debug=True)
