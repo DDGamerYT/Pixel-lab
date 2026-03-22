@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, send_file
-from flask_sqlalchemy import SQLAlchemy
 from PIL import Image
 import os
 import qrcode
@@ -7,8 +6,6 @@ from io import BytesIO
 from rembg import remove
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
 
 UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
